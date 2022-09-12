@@ -9,8 +9,8 @@
 # Set-up environment
 ml purge
 flat_modules
-module load PyTorch/1.8.1-fosscuda-2020b torchvision/0.9.1-fosscuda-2020b-PyTorch-1.8.1 JupyterLab/2.2.8-GCCcore-10.2.0 matplotlib/3.3.3-fosscuda-2020b
-source a4_env/bin/activate
+module load PyTorch
+source $HOME/a4/bin/activate
 
 # run train sh
 sh run.sh train
