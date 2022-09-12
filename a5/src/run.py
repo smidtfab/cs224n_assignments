@@ -144,6 +144,7 @@ elif args.function == 'evaluate':
     assert args.reading_params_path is not None
     assert args.eval_corpus_path is not None
     model.load_state_dict(torch.load(args.reading_params_path))
+    model = model.to(device)
     correct = 0
     total = 0
     with open(args.outputs_path, 'w') as fout:
@@ -151,7 +152,7 @@ elif args.function == 'evaluate':
         for line in tqdm(open(args.eval_corpus_path)):
             x = line.split('\t')[0]
             x = x + '⁇'
-            x = torch.tensor([pretrain_dataset.stoi[s] for s in x], dtype=torch.long)[None,...].to(device)
+            x = torch.tensor([pretrain_dataset.stoi[s] for s in x], dtype=torch.long, device=device)[None,...]
             pred = utils.sample(model, x, 32, sample=False)[0]
             completion = ''.join([pretrain_dataset.itos[int(i)] for i in pred])
             pred = completion.split('⁇')[1]

@@ -1,0 +1,25 @@
+This job can be monitored from: https://scruffy.c3se.chalmers.se/d/alvis-job/alvis-job?var-jobid=551314&from=1662726679000
+flat_modules is the only option now for updated Alvis nodes. You can remove this function call.
+/tmp/slurmd/job551314/slurm_script: line 13: a4_env/bin/activate: No such file or directory
+[nltk_data] Downloading package punkt to
+[nltk_data]     /cephyr/users/schmidtf/Alvis/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+uniformly initialize parameters [-0.100000, +0.100000]
+use device: cuda:0
+begin Maximum Likelihood training
+Traceback (most recent call last):
+  File "run.py", line 366, in <module>
+    main()
+  File "run.py", line 358, in main
+    train(args)
+  File "run.py", line 183, in train
+    example_losses = -model(src_sents, tgt_sents) # (batch_size,)
+  File "/apps/Arch/software/PyTorch/1.8.1-fosscuda-2020b/lib/python3.8/site-packages/torch/nn/modules/module.py", line 889, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/cephyr/users/schmidtf/Alvis/cs224n_assignments/a4/nmt_model.py", line 120, in forward
+    combined_outputs = self.decode(enc_hiddens, enc_masks, dec_init_state, target_padded)
+  File "/cephyr/users/schmidtf/Alvis/cs224n_assignments/a4/nmt_model.py", line 268, in decode
+    dec_state, combined_output, e_t = self.step(Ybar_t, dec_state, enc_hiddens, enc_hiddens_proj, enc_masks)
+  File "/cephyr/users/schmidtf/Alvis/cs224n_assignments/a4/nmt_model.py", line 379, in step
+    U_t = torch.concat((dec_hidden, a_t), dim=1) # (b, 3h)
+AttributeError: module 'torch' has no attribute 'concat'
